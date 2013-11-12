@@ -47,11 +47,13 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">SlbShare</a>
-          <div class="container nav-collapse">
+          <div class="container nav-collapse pull-right">
             <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <% if current_user %>
+                <li> <%= link_to "Signout", destroy_user_session_path, :method => :delete %> </li>
+              <% else %>
+                <li><%= link_to "Sign in with google", user_omniauth_authorize_path(:google_apps) %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -69,9 +71,9 @@
               <h3>Sidebar</h3>
               <ul class="nav nav-list">
                 <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
+                <li><%= link_to "Link1", "#"  %></li>
+                <li><%= link_to "Link2", "#"  %></li>
+                <li><%= link_to "Link3", "#"  %></li>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->
