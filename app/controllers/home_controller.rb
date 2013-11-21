@@ -1,6 +1,5 @@
-class HomeController < ActionController::Base
+class HomeController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  layout 'application'
   def index
     respond_to do |f|
       f.html
