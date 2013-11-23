@@ -55,3 +55,21 @@ gem 'haml-rails'
 gem "twitter-bootstrap-rails"
 
 gem "simple_form", :git => 'https://github.com/plataformatec/simple_form.git' , :branch => 'master'
+
+group :development, :test do
+  gem "rspec-rails", "~> 2.13.2"
+    #Factory Girl instead of Fixtures
+  gem "factory_girl_rails", "~> 4.0"
+  gem "guard-bundler", "~> 1.0.0"
+  gem "guard-rspec", "~> 3.0.2"
+
+  #Spork and related guard
+  gem 'spork-rails', github: 'railstutorial/spork-rails'
+  gem 'guard-spork', '1.5.0'
+  gem 'childprocess', '0.3.6'
+
+  # Guard and LiveReload - Install LiveReload Chrome Extension as well
+  gem "guard-livereload", "~> 1.4.0"
+  gem "growl", "~> 1.0.3"
+  gem "shoulda-matchers"
+end
