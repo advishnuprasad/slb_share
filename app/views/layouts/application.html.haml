@@ -39,11 +39,9 @@
         .collapse.navbar-collapse
           %ul.nav.navbar-nav
             %li.active
-              %a{:href => "#"} Home
+              %a{:href => root_path} Home
             %li
-              %a{:href => "#about"} About
-            %li
-              %a{:href => "#contact"} Contact
+              %a{:href => new_post_path} Share Link
           %ul.nav.navbar-nav.pull-right
             - if current_user
               %li
@@ -56,7 +54,10 @@
           %div{:class => "alert #{bootstrap_class_for(type)} fade in"}
             %button.close{"data-dismiss" => "alert"} ×
             = message
-        = yield
+        .col-xs-12.col-sm-12
+          .row
+            .col-9.col-sm-9.col-lg-9
+              = yield
       %hr
         #footer
           .container

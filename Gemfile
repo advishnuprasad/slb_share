@@ -1,7 +1,7 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc2'
+gem "rails", "~> 4.0.0"
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -52,3 +52,6 @@ gem "devise"
 gem 'omniauth-google-apps'
 
 gem 'haml-rails'
+gem "twitter-bootstrap-rails"
+
+gem "simple_form", :git => 'https://github.com/plataformatec/simple_form.git' , :branch => 'master'

@@ -48,8 +48,8 @@ test:
   encoding: unicode
   database: slb_share_test
   pool: 5
-  username: slb_share
-  password:
+  username: slb_test
+  password: slb_test
 
 production:
   adapter: postgresql

@@ -1,0 +1,25 @@
+%h3 Listing posts
+
+%table.table.table-striped.table-hover
+  %tr
+    %th Title
+    %th Links
+    %th Tags
+    %th User
+    %th
+    %th
+    %th
+
+  - @posts.each do |post|
+    %tr.success
+      %td= post.title
+      %td= link_to "Link", post.links
+      %td= post.tags
+      %td= post.user.name
+      %td= link_to 'Show', post
+      %td= link_to 'Edit', edit_post_path(post)
+      %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Post', new_post_path
