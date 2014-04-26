@@ -27,7 +27,7 @@
           = favicon_link_tag '/favicon.ico', :rel => 'shortcut icon'
           = javascript_include_tag "application"
   %body
-    .navbar.navbar-fixed-top.navbar-inverse{:role => "navigation"}
+    .navbar.navbar-fixed-top.navbar-default{:role => "navigation"}
       .container
         .navbar-header
           %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
@@ -36,17 +36,33 @@
             %span.icon-bar
             %span.icon-bar
           %a.navbar-brand{:href => root_path} SLB Share
+
         .collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li.active
+            %li
               %a{:href => root_path} Home
+            %li.active
+              %a{:href => root_path} Posts
+            %li
+              %a{:href => root_path} My Posts
             %li
               %a{:href => new_post_path} Share Link
-          %ul.nav.navbar-nav.pull-right
-            - if current_user
-              %li
-                = link_to "Signout", destroy_user_session_path, :method => :delete
-            - else
+          %form.navbar-form.navbar-left{:role => "search"}
+            .form-group
+              %input.form-control{:placeholder => "Search", :type => "text"}
+          - if current_user
+            %ul.nav.navbar-nav.navbar-right
+              %li#fat-menu.dropdown
+                %a#drop3.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", :role => "button"}
+                  = current_user.email
+                  %b.caret
+                %ul.dropdown-menu{"aria-labelledby" => "drop3", :role => "menu"}
+                  %li{:role => "presentation"}
+                    %a{:href => "http://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Edit Profile
+                  %li{:role => "presentation"}
+                    = link_to "Signout", destroy_user_session_path, :method => :delete
+          - else
+            %ul.nav.navbar-nav.navbar-right
               %li= link_to "Sign in with google", user_omniauth_authorize_path(:google_apps)
     .container
       .row.row-offcanvas.row-offcanvas-right
@@ -54,10 +70,21 @@
           %div{:class => "alert #{bootstrap_class_for(type)} fade in"}
             %button.close{"data-dismiss" => "alert"} ×
             = message
-        .col-xs-12.col-sm-12
+        .col-xs-12.col-sm-12{:style => 'margin:auto'}
           .row
             .col-9.col-sm-9.col-lg-9
               = yield
+            .col-3.col-sm-3.col-lg-3
+              .panel.panel-default
+                .panel-heading
+                  %h3.panel-title Tag Cloud
+                .panel-body
+                  Panel content
+              .panel.panel-default
+                .panel-heading
+                  %h3.panel-title Other Users
+                .panel-body
+                  = User.all.map(&:email).join("<br />").html_safe
       %hr
         #footer
           .container

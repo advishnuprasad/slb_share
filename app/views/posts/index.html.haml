@@ -1,21 +1,34 @@
-%h3 Listing posts
+/ .panel.panel-primary
+/   .panel-heading
+/     .panel-title
+/       Title
+/   .panel-body
+/     Panel content
+/   .panel-footer Panel footer
 
-%table.table.table-striped.table-hover
-  %tr
-    %th Title
-    %th Links
-    %th Tags
-    %th User
-    %th
-    %th
-    %th
+-@posts.each do |post|
+  .panel.panel-primary
+    .panel-heading
+      .panel-title
+        = post.title || post.links
+    .panel-body
+      = link_to post.links, 'http://'+post.links
+      %br
+    .panel-footer
+      Tags:
+      &nbsp;
+      = link_to post.tags, post.tags
+      .pull-right{:style => 'font-size:10px'}
+        = post.user.name
+        |
+        = post.created_at.strftime('%d-%b-%y')
 
-  - @posts.each do |post|
-    %tr.success
-      %td= post.title
-      %td= link_to "Link", post.links
-      %td= post.tags
-      %td= post.user.name
-      %td= link_to 'Show', post
-      %td= link_to 'Edit', edit_post_path(post)
-      %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  / - @posts.each do |post|
+  /   %tr.success
+  /     %td= post.title
+  /     %td= link_to "Link", post.links
+  /     %td= post.tags
+  /     %td= post.user.name
+  /     %td= link_to 'Show', post
+  /     %td= link_to 'Edit', edit_post_path(post)
+  /     %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
