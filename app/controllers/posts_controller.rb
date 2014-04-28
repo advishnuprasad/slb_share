@@ -5,9 +5,9 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag])
+      @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 4)
     else
-      @posts = Post.all.order("created_at desc")
+      @posts = Post.all.order("created_at desc").paginate(:page => params[:page], :per_page => 4)
     end
   end
 
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
   def user
     user = User.find(params[:user_id])
-    @posts = user.posts
+    @posts = user.posts.paginate(:page => params[:page], :per_page => 4)
     render :index
   end
   # GET /posts/new

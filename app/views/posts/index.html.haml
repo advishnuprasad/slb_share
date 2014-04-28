@@ -7,7 +7,7 @@
 /   .panel-footer Panel footer
 
 -@posts.each do |post|
-  .panel.panel-primary
+  .panel.panel-default
     .panel-heading
       .panel-title
         = post.title || post.links
@@ -22,13 +22,13 @@
         = post.user.name
         |
         = post.created_at.strftime('%d-%b-%y')
-
-  / - @posts.each do |post|
-  /   %tr.success
-  /     %td= post.title
-  /     %td= link_to "Link", post.links
-  /     %td= post.tags
-  /     %td= post.user.name
-  /     %td= link_to 'Show', post
-  /     %td= link_to 'Edit', edit_post_path(post)
-  /     %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+= will_paginate @posts
+/ - @posts.each do |post|
+/   %tr.success
+/     %td= post.title
+/     %td= link_to "Link", post.links
+/     %td= post.tags
+/     %td= post.user.name
+/     %td= link_to 'Show', post
+/     %td= link_to 'Edit', edit_post_path(post)
+/     %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
