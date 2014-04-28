@@ -73,3 +73,6 @@ group :development, :test do
   gem "growl", "~> 1.0.3"
   gem "shoulda-matchers"
 end
+
+gem 'acts-as-taggable-on'
+gem 'will_paginate', '~> 3.0'
