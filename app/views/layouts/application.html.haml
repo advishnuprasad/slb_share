@@ -43,9 +43,10 @@
               %a{:href => root_path} Links
             %li
               %a{:href => new_post_path} Share Link
-          %form.navbar-form.navbar-left{:role => "search"}
+          .navbar-form.navbar-left{:role => "search"}
             .form-group
-              %input.form-control{:placeholder => "Search", :type => "text"}
+              = form_tag search_posts_path do
+                %input.form-control{:placeholder => "Search", :type => "text", :name => "q"}
           - if current_user
             %ul.nav.navbar-nav.navbar-right
               %li#fat-menu.dropdown

@@ -1,6 +1,10 @@
 SlbShare::Application.routes.draw do
   get 'tags/:tag', to: 'posts#index', as: :tag
-  resources :posts
+  resources :posts do
+    collection do
+      match 'search' => 'posts#search', via: [:get, :post], as: :search
+    end
+  end
 
   get 'user/:user_id/posts', to: 'posts#user', as: :user_posts
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
