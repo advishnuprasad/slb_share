@@ -39,12 +39,8 @@
 
         .collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li
-              %a{:href => root_path} Home
             %li.active
-              %a{:href => root_path} Posts
-            %li
-              %a{:href => root_path} My Posts
+              %a{:href => root_path} Links
             %li
               %a{:href => new_post_path} Share Link
           %form.navbar-form.navbar-left{:role => "search"}
@@ -58,7 +54,7 @@
                   %b.caret
                 %ul.dropdown-menu{"aria-labelledby" => "drop3", :role => "menu"}
                   %li{:role => "presentation"}
-                    %a{:href => "http://twitter.com/fat", :role => "menuitem", :tabindex => "-1"} Edit Profile
+                    %a{:href => '#', :role => "menuitem", :tabindex => "-1"} Edit Profile
                   %li{:role => "presentation"}
                     = link_to "Signout", destroy_user_session_path, :method => :delete
           - else
@@ -72,9 +68,9 @@
             = message
         .col-xs-12.col-sm-12{:style => 'margin:auto'}
           .row
-            .col-9.col-sm-9.col-lg-9
+            .col-9.col-sm-12.col-lg-9
               = yield
-            .col-3.col-sm-3.col-lg-3
+            .col-3.col-sm-12.col-lg-3
               .panel.panel-primary
                 .panel-heading
                   %h3.panel-title Tag Cloud
@@ -82,7 +78,7 @@
                   #tag_cloud
                     - tag_cloud Post.tag_counts, %w{s m l} do |tag, css_class|
                       = link_to tag.name, tag_path(tag.name), class: css_class
-              .panel.panel-default
+              .panel.panel-primary
                 .panel-heading
                   %h3.panel-title Colleagues
                 .panel-body

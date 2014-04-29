@@ -1,18 +1,10 @@
-/ .panel.panel-primary
-/   .panel-heading
-/     .panel-title
-/       Title
-/   .panel-body
-/     Panel content
-/   .panel-footer Panel footer
-
 -@posts.each do |post|
   .panel.panel-default
     .panel-heading
       .panel-title
         = post.title || post.links
     .panel-body
-      = link_to post.links, 'http://'+post.links
+      = link_to post.links, url_with_protocol(post.links), :target => '_blank'
       %br
     .panel-footer
       Tags:
@@ -23,12 +15,3 @@
         |
         = post.created_at.strftime('%d-%b-%y')
 = will_paginate @posts
-/ - @posts.each do |post|
-/   %tr.success
-/     %td= post.title
-/     %td= link_to "Link", post.links
-/     %td= post.tags
-/     %td= post.user.name
-/     %td= link_to 'Show', post
-/     %td= link_to 'Edit', edit_post_path(post)
-/     %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
