@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
   # GET /posts
   # GET /posts.json
   def index
+    @page_title = "Links"
     if params[:tag]
       @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 4)
     else
@@ -23,8 +23,9 @@ class PostsController < ApplicationController
   end
   # GET /posts/new
   def new
+    @page_title = "New Link"
     unless current_user
-      redirect_to new_user_session_path
+      redirect_to user_omniauth_authorize_path(:google_apps)
     end
 
     @post = Post.new

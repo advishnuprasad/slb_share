@@ -4,7 +4,7 @@
     %meta{:charset => "utf-8"}
       %meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
         %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-          %title= content_for?(:title) ? yield(:title) : "SlbShare"
+          %title= @page_title || "Sharify"
           = csrf_meta_tags
           / Le HTML5 shim, for IE6-8 support of HTML elements
           /[if lt IE 9]
@@ -35,18 +35,22 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{:href => root_path} SLB Share
+          %a.navbar-brand{:href => root_path} Sharify
 
         .collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li.active
+            %li{:class => active_class(root_path)}
               %a{:href => root_path} Links
-            %li
-              %a{:href => new_post_path} Share Link
+            %li{:class => active_class(new_post_path)}
+              %a{:href => new_post_path, 'data-no-turbolink' => true} Share Link
           .navbar-form.navbar-left{:role => "search"}
             .form-group
               = form_tag search_posts_path do
                 %input.form-control{:placeholder => "Search", :type => "text", :name => "q"}
+          %ul.nav.navbar-nav
+            %li
+              #loading.hide{:style => 'margin-top:10px'}
+                = image_tag(asset_path("dark_green_load_spinner.gif"))
           - if current_user
             %ul.nav.navbar-nav.navbar-right
               %li#fat-menu.dropdown
@@ -63,13 +67,13 @@
               %li= link_to "Sign in with google", user_omniauth_authorize_path(:google_apps)
     .container
       .row.row-offcanvas.row-offcanvas-right
-        - flash.each do |type, message|
-          %div{:class => "alert #{bootstrap_class_for(type)} fade in"}
-            %button.close{"data-dismiss" => "alert"} ×
-            = message
         .col-xs-12.col-sm-12{:style => 'margin:auto'}
           .row
             .col-9.col-sm-12.col-lg-9
+              - flash.each do |type, message|
+                %div{:class => "alert #{bootstrap_class_for(type)} fade in"}
+                  %button.close{"data-dismiss" => "alert"} ×
+                  = message
               = yield
             .col-3.col-sm-12.col-lg-3
               .panel.panel-primary

@@ -17,4 +17,10 @@ module ApplicationHelper
   def url_with_protocol(url)
     /^http/.match(url) ? url : "http://#{url}"
   end
+
+  def active_class(path)
+    if request.path == path
+      return 'active'
+    end
+  end
 end
