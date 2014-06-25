@@ -82,6 +82,9 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.3)
     formatador (0.2.4)
+    gcm (0.0.7)
+      httparty
+      json
     growl (1.0.3)
     guard (1.8.3)
       formatador (>= 0.2.4)
@@ -113,6 +116,9 @@ GEM
     hashie (2.0.5)
     hike (1.2.3)
     http_parser.rb (0.5.3)
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.5)
     jbuilder (1.5.2)
       activesupport (>= 3.0.0)
@@ -139,6 +145,7 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.2)
+    multi_xml (0.5.5)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
@@ -274,6 +281,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails (~> 4.0)
+  gcm
   growl (~> 1.0.3)
   guard-bundler (~> 1.0.0)
   guard-livereload (~> 1.4.0)
