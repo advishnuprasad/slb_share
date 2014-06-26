@@ -11,6 +11,8 @@
  *= require_self
  *= require_tree .
  *= require bootstrap.min
+ *= require selectize
+ *= require selectize.default
  */
 @font-face {
   font-family: 'Glyphicons Halflings';

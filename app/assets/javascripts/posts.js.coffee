@@ -3,4 +3,11 @@ $(document).on 'ready page:load', ->
     $("#loading").show()
     return
 
-  return
+  $("#post_tag_list").clear;
+
+  $("#post_tag_list").selectize
+    delimiter: ","
+    persist: false,
+    create: (input) ->
+      value: input
+      text: input

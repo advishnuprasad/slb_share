@@ -5,9 +5,9 @@ class PostsController < ApplicationController
   def index
     @page_title = "Links"
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 4)
+      @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 30)
     else
-      @posts = Post.all.order("created_at desc").paginate(:page => params[:page], :per_page => 4)
+      @posts = Post.all.order("created_at desc").paginate(:page => params[:page], :per_page => 30)
     end
   end
 
@@ -88,6 +88,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :description, :links, :tags, :user_id, :tag_list)
+      params.require(:post).permit(:title, :description, :links, :tags, :user_id, :tag_list => [])
     end
 end
