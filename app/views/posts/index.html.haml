@@ -1,18 +1,16 @@
 .col-12.col-sm-12.col-lg-12
-  -@posts.each do |post|
-    .panel.panel-default
-      .panel-heading
-        .panel-title
-          = post.title || post.links
-      .panel-body
-        = link_to post.links, url_with_protocol(post.links), :target => '_blank'
-        %br
-      .panel-footer
-        Tags:
-        &nbsp;
-        = raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
-        .pull-right{:style => 'font-size:10px'}
-          = post.user.name
-          |
-          = post.created_at.strftime('%d-%b-%y')
+  .row
+  -@posts.each do |post|  
+    .col-xs-12.col-sm-6
+      .panel.panel-default
+        .panel-heading
+          .panel-title
+            = link_to post.title.truncate(20) || post.links.truncate(20), post
+        .panel-body
+          = link_to post.links.truncate(40), url_with_protocol(post.links), :target => '_blank'
+          %br
+        .panel-footer
+          Tags:
+          &nbsp;
+          = raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
   = will_paginate @posts

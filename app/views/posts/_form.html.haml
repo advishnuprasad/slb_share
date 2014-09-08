@@ -3,8 +3,8 @@
     .inputs.col-sm-5
       = f.input :title
       = f.input :description
-      = f.input :links
+      = f.input :links, :label => "Link"
       %label.string.optional{:for => "post_tag_list"} Tag list
-      = select_tag :tag_list, options_for_select(Post::AvailableTags), :name => "post[tag_list][]", :id => "post_tag_list", :multiple => "multiple" , :class => "select"
+      = select_tag :tag_list, options_for_select(Tag.pluck(:name)), :name => "post[tag_list][]", :id => "post_tag_list", :multiple => "multiple" , :class => "select"
       .actions
         = f.button :submit, "Share", :class => ['btn btn-default']

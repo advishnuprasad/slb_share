@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   acts_as_taggable
   belongs_to :user
-  validates_presence_of :title, :description, :user
+  validates_presence_of :title, :links, :user
   AvailableTags = %w(Rails Ruby RoR Js Jquery Gems)
   def user_name
     self.user.name
@@ -10,6 +10,6 @@ class Post < ActiveRecord::Base
   def self.search(params)
     params[:q] ||= "%"
     query = "%"+params[:q].downcase+"%"
-    @posts = Post.where("lower(title) like ? or lower(links) like ? or lower(description) like ?", query, query, query).paginate(:page => params[:page], :per_page => 4)
+    @posts = Post.where("lower(title) like ? or lower(links) like ? or lower(description) like ?", query, query, query).paginate(:page => params[:page], :per_page => 30)
   end
 end

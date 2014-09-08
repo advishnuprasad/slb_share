@@ -1,0 +1,40 @@
+.navbar.navbar-fixed-top.navbar-default{:role => "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => root_path} Sharify
+
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li{:class => active_class(root_path)}
+          %a{:href => root_path} Links
+        %li{:class => active_class(new_post_path)}
+          %a{:href => new_post_path, 'data-no-turbolink' => true} Share Link
+      .navbar-form.navbar-left{:role => "search"}
+        .form-group
+          = form_tag search_posts_path do
+            %input.form-control{:placeholder => "Search", :type => "text", :name => "q"}
+      %ul.nav.navbar-nav
+        %li
+          #loading.hide{:style => 'margin-top:10px'}
+            = image_tag(asset_path("dark_green_load_spinner.gif"))
+      - if current_user
+        %ul.nav.navbar-nav.navbar-right
+          %li#fat-menu.dropdown
+            %a#drop3.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = current_user.email
+              %b.caret
+            %ul.dropdown-menu{"aria-labelledby" => "drop3", :role => "menu"}
+              %li{:role => "presentation"}
+                %a{:href => '#', :role => "menuitem", :tabindex => "-1"} Edit Profile
+              %li{:role => "presentation"}
+                = link_to "Signout", destroy_user_session_path, :method => :delete
+      - else
+        %ul.nav.navbar-nav.navbar-right
+          %li= link_to "Signup", new_user_registration_path
+          %li= link_to "Signin", new_user_session_path
+          %li= link_to "Sign in with google", user_omniauth_authorize_path(:google_apps)

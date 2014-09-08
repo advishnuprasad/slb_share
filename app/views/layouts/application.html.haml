@@ -27,44 +27,7 @@
           = favicon_link_tag '/favicon.ico', :rel => 'shortcut icon'
           = javascript_include_tag "application"
   %body
-    .navbar.navbar-fixed-top.navbar-default{:role => "navigation"}
-      .container
-        .navbar-header
-          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand{:href => root_path} Sharify
-
-        .collapse.navbar-collapse
-          %ul.nav.navbar-nav
-            %li{:class => active_class(root_path)}
-              %a{:href => root_path} Links
-            %li{:class => active_class(new_post_path)}
-              %a{:href => new_post_path, 'data-no-turbolink' => true} Share Link
-          .navbar-form.navbar-left{:role => "search"}
-            .form-group
-              = form_tag search_posts_path do
-                %input.form-control{:placeholder => "Search", :type => "text", :name => "q"}
-          %ul.nav.navbar-nav
-            %li
-              #loading.hide{:style => 'margin-top:10px'}
-                = image_tag(asset_path("dark_green_load_spinner.gif"))
-          - if current_user
-            %ul.nav.navbar-nav.navbar-right
-              %li#fat-menu.dropdown
-                %a#drop3.dropdown-toggle{"data-toggle" => "dropdown", :href => "#", :role => "button"}
-                  = current_user.email
-                  %b.caret
-                %ul.dropdown-menu{"aria-labelledby" => "drop3", :role => "menu"}
-                  %li{:role => "presentation"}
-                    %a{:href => '#', :role => "menuitem", :tabindex => "-1"} Edit Profile
-                  %li{:role => "presentation"}
-                    = link_to "Signout", destroy_user_session_path, :method => :delete
-          - else
-            %ul.nav.navbar-nav.navbar-right
-              %li= link_to "Sign in with google", user_omniauth_authorize_path(:google_apps)
+    = render "layouts/header"
     .container
       .row.row-offcanvas.row-offcanvas-right
         .col-xs-12.col-sm-12{:style => 'margin:auto'}
@@ -75,22 +38,5 @@
                   %button.close{"data-dismiss" => "alert"} ×
                   = message
               = yield
-            .col-3.col-sm-12.col-lg-3
-              .panel.panel-primary
-                .panel-heading
-                  %h3.panel-title Tag Cloud
-                .panel-body
-                  #tag_cloud
-                    - tag_cloud Post.tag_counts, %w{s m l} do |tag, css_class|
-                      = link_to tag.name, tag_path(tag.name), class: css_class
-              .panel.panel-primary
-                .panel-heading
-                  %h3.panel-title Colleagues
-                .panel-body
-                  = raw User.all.map { |u| link_to u.email, user_posts_path(user_id: u) }.join('<br/>')
-      %hr
-        #footer
-          .container
-            %p.text-muted.credit
-              Developed by & for Strata Labs
-    / /.container
+            = render "layouts/sidebar"
+    = render "layouts/footer"
