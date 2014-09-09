@@ -14,6 +14,8 @@
           %a{:href => root_path} Links
         %li{:class => active_class(new_post_path)}
           %a{:href => new_post_path, 'data-no-turbolink' => true} Share Link
+        %li{:class => active_class(posts_path)}
+          %a{:href => root_path, 'data-no-turbolink' => true} My Favourites
       .navbar-form.navbar-left{:role => "search"}
         .form-group
           = form_tag search_posts_path do
@@ -30,7 +32,7 @@
               %b.caret
             %ul.dropdown-menu{"aria-labelledby" => "drop3", :role => "menu"}
               %li{:role => "presentation"}
-                %a{:href => '#', :role => "menuitem", :tabindex => "-1"} Edit Profile
+                %a{:href => edit_user_registration_path, :role => "menuitem", :tabindex => "-1"} Edit Profile
               %li{:role => "presentation"}
                 = link_to "Signout", destroy_user_session_path, :method => :delete
       - else

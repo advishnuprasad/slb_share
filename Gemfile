@@ -78,5 +78,6 @@ gem 'acts-as-taggable-on'
 gem 'will_paginate', '~> 3.0'
 gem 'rails_12factor', group: :production
 
-gem 'gcm'
 gem "selectize-rails"
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'markable', :git => 'git@github.com:chrome/markable.git'

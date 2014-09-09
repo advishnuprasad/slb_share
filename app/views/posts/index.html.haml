@@ -1,20 +1,26 @@
 .col-12.col-sm-12.col-lg-12
   .row
-  -@posts.each do |post|  
-    .col-xs-12.col-sm-12
-      .panel.panel-default
-        .panel-heading
-          .panel-title
-            = link_to post.title || post.links, post
-        .panel-body
-          = link_to post.links, url_with_protocol(post.links), :target => '_blank'
-          %br
-        .panel-footer
-          Tags:
-          &nbsp;
-          = raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
-          .pull-right{:style => 'font-size:10px'}
-            = post.user.name
-            |
-            = post.created_at.strftime('%d-%b-%y')
-  = will_paginate @posts
+    -@posts.each do |post|  
+      .col-xs-12.col-sm-12
+        .panel.panel-default
+          .panel-heading
+            .panel-title
+              = link_to post.title || post.links, post
+              .pull-right{:style => 'font-size:12px'}
+                - if current_user
+                  - if (post.marked_as? :favorite, :by => current_user)
+                    = link_to "In Favourites", "#", :remote => true
+                  - else
+                    = link_to "Add to Favourites", "#", :remote => true
+          .panel-body
+            = link_to post.links, url_with_protocol(post.links), :target => '_blank'
+            %br
+          .panel-footer
+            Tags:
+            &nbsp;
+            = raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
+            .pull-right{:style => 'font-size:10px'}
+              = post.user.name
+              |
+              = post.created_at.strftime('%d-%b-%y')
+    = will_paginate @posts

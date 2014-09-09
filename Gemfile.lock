@@ -6,6 +6,13 @@ GIT
       spork (>= 1.0rc0)
 
 GIT
+  remote: git@github.com:chrome/markable.git
+  revision: 6fece7b200e339b87e2abf3cad190ab10966e04b
+  specs:
+    markable (0.1.4)
+      rails (>= 3.1)
+
+GIT
   remote: https://github.com/plataformatec/simple_form.git
   revision: 9d964b8b565e3bb6fe21e73ae0b8f06d8d297fd1
   branch: master
@@ -43,6 +50,7 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (3.0.1)
       rails (>= 3, < 5)
+    acts_as_votable (0.10.0)
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
@@ -82,9 +90,6 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.3)
     formatador (0.2.4)
-    gcm (0.0.7)
-      httparty
-      json
     growl (1.0.3)
     guard (1.8.3)
       formatador (>= 0.2.4)
@@ -116,9 +121,6 @@ GEM
     hashie (2.0.5)
     hike (1.2.3)
     http_parser.rb (0.5.3)
-    httparty (0.13.1)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
     i18n (0.6.5)
     jbuilder (1.5.2)
       activesupport (>= 3.0.0)
@@ -145,7 +147,6 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.2)
-    multi_xml (0.5.5)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
@@ -277,12 +278,12 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  acts_as_votable (~> 0.10.0)
   capistrano
   childprocess (= 0.3.6)
   coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails (~> 4.0)
-  gcm
   growl (~> 1.0.3)
   guard-bundler (~> 1.0.0)
   guard-livereload (~> 1.4.0)
@@ -292,6 +293,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   less-rails
+  markable!
   omniauth-google-apps
   pg
   rails (~> 4.0.0)
