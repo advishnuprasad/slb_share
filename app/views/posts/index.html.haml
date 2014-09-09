@@ -1,18 +1,20 @@
 .col-12.col-sm-12.col-lg-12
   .row
   -@posts.each do |post|  
-    .col-xs-12.col-sm-6
+    .col-xs-12.col-sm-12
       .panel.panel-default
         .panel-heading
           .panel-title
-            = link_to post.title.truncate(20) || post.links.truncate(20), post
+            = link_to post.title || post.links, post
         .panel-body
-          = link_to post.links.truncate(40), url_with_protocol(post.links), :target => '_blank'
+          = link_to post.links, url_with_protocol(post.links), :target => '_blank'
           %br
         .panel-footer
           Tags:
           &nbsp;
           = raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
           .pull-right{:style => 'font-size:10px'}
+            = post.user.name
+            |
             = post.created_at.strftime('%d-%b-%y')
   = will_paginate @posts
