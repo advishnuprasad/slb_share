@@ -1,6 +1,13 @@
 .col-3.col-sm-12.col-lg-3
   .panel.panel-primary
     .panel-heading
+      %h3.panel-title Archives
+    .panel-body
+      %ul
+        - Post.find(:all, :order => "created_at DESC").group_by { |post| post.created_at.beginning_of_month }.each do |month, posts|
+          %li= link_to "#{month.strftime('%B %Y')} (#{posts.count})", posts_by_year_and_month_path(:year=> month.year, :month => month.month)
+  .panel.panel-primary
+    .panel-heading
       %h3.panel-title Tag Cloud
     .panel-body
       #tag_cloud

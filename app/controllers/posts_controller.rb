@@ -11,6 +11,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def by_year_and_month
+    @posts = Post.where("EXTRACT(YEAR FROM created_at)= ? AND EXTRACT(MONTH from created_at) = ? ", params[:year], params[:month]).order("created_at DESC").paginate(:page => params[:page], :per_page => 30)
+    render :index
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show

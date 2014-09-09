@@ -13,4 +13,6 @@
           Tags:
           &nbsp;
           = raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
+          .pull-right{:style => 'font-size:10px'}
+            = post.created_at.strftime('%d-%b-%y')
   = will_paginate @posts

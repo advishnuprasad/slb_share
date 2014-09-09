@@ -5,7 +5,7 @@ SlbShare::Application.routes.draw do
       match 'search' => 'posts#search', via: [:get, :post], as: :search
     end
   end
-
+  get 'posts/by_year_and_month/:year/:month' => 'posts#by_year_and_month', :as=> :posts_by_year_and_month
   get 'user/:user_id/posts', to: 'posts#user', as: :user_posts
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
