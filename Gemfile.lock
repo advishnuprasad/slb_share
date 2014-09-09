@@ -6,7 +6,7 @@ GIT
       spork (>= 1.0rc0)
 
 GIT
-  remote: git@github.com:chrome/markable.git
+  remote: https://github.com/chrome/markable.git
   revision: 6fece7b200e339b87e2abf3cad190ab10966e04b
   specs:
     markable (0.1.4)

@@ -80,4 +80,4 @@ gem 'rails_12factor', group: :production
 
 gem "selectize-rails"
 gem 'acts_as_votable', '~> 0.10.0'
-gem 'markable', :git => 'git@github.com:chrome/markable.git'
+gem 'markable', :git => 'https://github.com/chrome/markable.git'
