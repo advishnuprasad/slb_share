@@ -3,7 +3,7 @@
     %h3.panel-title Archives
   .panel-body
     %ul
-      - Post.find(:all, :order => "created_at DESC").group_by { |post| post.created_at.beginning_of_month }.each do |month, posts|
+      - Post.order("created_at DESC").group_by { |post| post.created_at.beginning_of_month }.each do |month, posts|
         %li= link_to "#{month.strftime('%B %Y')} (#{posts.count})", posts_by_year_and_month_path(:year=> month.year, :month => month.month)
 .panel.panel-primary
   .panel-heading
@@ -16,4 +16,4 @@
   .panel-heading
     %h3.panel-title Users
   .panel-body
-    = raw User.all.first(10).map { |u| link_to u.email, user_posts_path(user_id: u) }.join('<br/>')
+    = raw User.order("created_at desc").limit(10).to_a.map { |u| link_to u.email, user_posts_path(user_id: u) }.join('<br/>')
