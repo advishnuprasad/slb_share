@@ -1,5 +1,4 @@
 SlbShare::Application.routes.draw do
-  get "home/index"
   get 'tags/:tag', to: 'posts#index', as: :tag
   resources :posts do
     collection do
@@ -14,7 +13,7 @@ SlbShare::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  match "/" => 'home#index', via: [:get, :post], as: :root
+  match "/" => 'posts#index', via: [:get, :post], as: :root
 
 
   # Example of regular route:
