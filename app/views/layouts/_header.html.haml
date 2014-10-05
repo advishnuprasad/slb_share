@@ -10,12 +10,12 @@
 
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li{:class => active_class(root_path)}
-          %a{:href => root_path} Links
-        %li{:class => active_class(new_post_path)}
-          %a{:href => new_post_path, 'data-no-turbolink' => true} Share Link
         %li{:class => active_class(posts_path)}
-          %a{:href => root_path, 'data-no-turbolink' => true} My Favourites
+          %a{:href => posts_path} Links
+        %li{:class => active_class(new_post_path)}
+          %a{:href => new_post_path, 'data-no-turbolink' => true} Share Link        
+        %li{:class => active_class(favorites_posts_path)}
+          %a{:href => favorites_posts_path, 'data-no-turbolink' => true} My Favourites
       .navbar-form.navbar-left{:role => "search"}
         .form-group
           = form_tag search_posts_path do

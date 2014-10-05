@@ -1,18 +1,19 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :favorite, :unfavorite]
+  before_filter :authenticate_user!, :only => [:new, :create, :update, :destroy, :favorite, :unfavorite, :favorites]
   # GET /posts
   # GET /posts.json
   def index
     @page_title = "Links"
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 30)
+      @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page])
     else
-      @posts = Post.all.order("created_at desc").paginate(:page => params[:page], :per_page => 30)
+      @posts = Post.all.order("created_at desc").paginate(:page => params[:page])
     end
   end
 
   def by_year_and_month
-    @posts = Post.where("EXTRACT(YEAR FROM created_at)= ? AND EXTRACT(MONTH from created_at) = ? ", params[:year], params[:month]).order("created_at DESC").paginate(:page => params[:page], :per_page => 30)
+    @posts = Post.where("EXTRACT(YEAR FROM created_at)= ? AND EXTRACT(MONTH from created_at) = ? ", params[:year], params[:month]).order("created_at DESC").paginate(:page => params[:page])
     render :index
   end
 
@@ -23,16 +24,12 @@ class PostsController < ApplicationController
 
   def user
     user = User.find(params[:user_id])
-    @posts = user.posts.paginate(:page => params[:page], :per_page => 4)
+    @posts = user.posts.paginate(:page => params[:page])
     render :index
   end
   # GET /posts/new
   def new
     @page_title = "New Link"
-    unless current_user
-      redirect_to user_omniauth_authorize_path(:google_apps)
-    end
-
     @post = Post.new
   end
 
@@ -82,6 +79,25 @@ class PostsController < ApplicationController
 
   def search
     @posts = Post.search(params)
+    render :index
+  end
+
+  def favorite
+    current_user.set_mark :favorite, @post
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def unfavorite
+    current_user.remove_mark :favorite, @post
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def favorites
+    @posts = current_user.favorite_posts.paginate(:page => params[:page])
     render :index
   end
 

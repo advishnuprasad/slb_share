@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  self.per_page = 10
   acts_as_taggable
   acts_as_votable
   markable_as :favorite

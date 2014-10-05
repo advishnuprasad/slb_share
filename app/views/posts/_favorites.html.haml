@@ -1,0 +1,6 @@
+- if (post.marked_as? :favorite, :by => current_user)
+  .favorite{:id => "favorite_#{post.id}"}
+    = link_to image_tag("star.png"), unfavorite_post_path(post) , :remote => true, :method => :post
+- else
+  .non-favorite{:id => "non_favorite_#{post.id}"}
+    = link_to image_tag("favorite_hover.png"), favorite_post_path(post) , :remote => true, :method => :post
