@@ -8,10 +8,8 @@
               = link_to post.title || post.links, post
               .pull-right{:style => 'font-size:12px'}
                 - if current_user
-                  - if (post.marked_as? :favorite, :by => current_user)
-                    = link_to "In Favourites", "#", :remote => true
-                  - else
-                    = link_to "Add to Favourites", "#", :remote => true
+                  .favorite{:id => "favorite_#{post.id}"}
+                    = render :partial => "favorites", :locals => { :post => post }
           .panel-body
             = link_to post.links, url_with_protocol(post.links), :target => '_blank'
             %br

@@ -2,8 +2,13 @@ SlbShare::Application.routes.draw do
   get "home/index"
   get 'tags/:tag', to: 'posts#index', as: :tag
   resources :posts do
-    collection do
+    collection do      
       match 'search' => 'posts#search', via: [:get, :post], as: :search
+      get 'favorites'
+    end
+    member do
+      post 'favorite'
+      post 'unfavorite'
     end
   end
   get 'posts/by_year_and_month/:year/:month' => 'posts#by_year_and_month', :as=> :posts_by_year_and_month
