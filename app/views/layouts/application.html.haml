@@ -32,7 +32,7 @@
       .row.row-offcanvas.row-offcanvas-right
         .col-xs-12.col-sm-12{:style => 'margin:auto'}
           .row
-            .col-9.col-sm-12.col-lg-9.col-xs-9
+            .col-9.col-sm-12.col-lg-9
               - flash.each do |type, message|
                 %div{:class => "alert #{bootstrap_class_for(type)} fade in"}
                   %button.close{"data-dismiss" => "alert"} ×
