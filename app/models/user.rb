@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  devise :omniauthable, :omniauth_providers => [:google_apps]
+  devise :omniauthable
 
   def self.find_for_googleapps_oauth(access_token, signed_in_resource=nil)
     data = access_token['info']

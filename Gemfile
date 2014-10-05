@@ -50,6 +50,8 @@ gem "capistrano"
 
 gem "devise"
 gem 'omniauth-google-apps'
+gem 'omniauth'
+gem "omniauth-google-oauth2"
 
 gem 'haml-rails'
 gem "twitter-bootstrap-rails"
