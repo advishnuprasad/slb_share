@@ -1,0 +1,25 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "width=device-width", :name => "viewport"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title ZURBemails
+    %link{:href => "stylesheets/email.css", :rel => "stylesheet", :type => "text/css"}/
+  %body{:bgcolor => "#FFFFFF"}
+    %table.body-wrap
+      %tr
+        %td
+        %td.container{:bgcolor => "#FFFFFF"}
+          .content
+            %table
+              %tr
+                %td
+                  %h5 Hi
+                  %p.lead 
+                    = @post.user.name
+                    shared a link in SlbShare about 
+                    = @post.title
+                    = "."
+                    = link_to "Click here", "http://slbshare.herokuapp.com/posts/#{@post.id}"
+                    to check.
+        %td

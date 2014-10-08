@@ -11,6 +11,8 @@ class Post < ActiveRecord::Base
 
   AvailableTags = %w(Rails Ruby RoR Js Jquery Gems)
 
+  after_create :send_mail
+
   def user_name
     self.user.name
   end
@@ -19,5 +21,9 @@ class Post < ActiveRecord::Base
     params[:q] ||= "%"
     query = "%"+params[:q].downcase+"%"
     @posts = Post.where("lower(title) like ? or lower(links) like ? or lower(description) like ?", query, query, query).paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def send_mail
+    Notifier.delay.email_notify(id)
   end
 end

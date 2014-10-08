@@ -83,3 +83,6 @@ gem 'rails_12factor', group: :production
 gem "selectize-rails"
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'markable', :git => 'https://github.com/chrome/markable.git'
+gem 'delayed_job_active_record'
+gem 'foreman'
+gem "letter_opener", :group => :development
