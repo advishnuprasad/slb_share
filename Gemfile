@@ -6,8 +6,6 @@ gem "rails", "~> 4.0.0"
 # Use postgresql as the database for Active Record
 gem 'pg'
 
-gem 'sqlite3'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc2'
 
@@ -61,6 +59,7 @@ gem "twitter-bootstrap-rails"
 gem "simple_form", :git => 'https://github.com/plataformatec/simple_form.git' , :branch => 'master'
 
 group :development, :test do
+  gem 'sqlite3'
   gem "rspec-rails", "~> 2.13.2"
     #Factory Girl instead of Fixtures
   gem "factory_girl_rails", "~> 4.0"
