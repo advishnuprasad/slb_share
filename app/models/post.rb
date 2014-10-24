@@ -24,6 +24,6 @@ class Post < ActiveRecord::Base
   end
 
   def send_mail
-    Notifier.delay.email_notify(id)
+    Notifier.delay.notify_email(id) if Rails.env.production?
   end
 end

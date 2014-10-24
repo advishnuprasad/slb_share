@@ -6,6 +6,8 @@ gem "rails", "~> 4.0.0"
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc2'
 
@@ -86,3 +88,4 @@ gem 'markable', :git => 'https://github.com/chrome/markable.git'
 gem 'delayed_job_active_record'
 gem 'foreman'
 gem "letter_opener", :group => :development
+gem 'rubycritic', :group => :development
