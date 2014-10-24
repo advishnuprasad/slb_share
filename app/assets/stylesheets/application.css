@@ -25,3 +25,12 @@
 body {
   padding-top: 70px;
 }
+
+.post-box {
+  margin: 15px 0 15px 0;
+}
+/*.thumbnail {
+  height: 300px !important;
+  overflow: hidden;
+}*/
+.thumbnail img { padding:10px; }

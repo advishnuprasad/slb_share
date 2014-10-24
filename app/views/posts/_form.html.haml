@@ -1,9 +1,7 @@
 .row
   = simple_form_for(@post) do |f|
     .inputs.col-sm-5
-      = f.input :title
-      = f.input :description
-      = f.input :links, :label => "Link", :input_html => {:value => f.object.links || "http://" }
+      = f.input :links, :label => "Url", :input_html => {:value => f.object.links || "http://" }
       %label.string.optional{:for => "post_tag_list"} Tag list
       = select_tag :tag_list, options_for_select(Tag.pluck(:name)), :name => "post[tag_list][]", :id => "post_tag_list", :multiple => "multiple" , :class => "select"
       .actions

@@ -12,6 +12,7 @@ SlbShare::Application.routes.draw do
   end
   get 'posts/by_year_and_month/:year/:month' => 'posts#by_year_and_month', :as=> :posts_by_year_and_month
   get 'user/:user_id/posts', to: 'posts#user', as: :user_posts
+  get '/new_index', to: 'posts#new_index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   # devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 

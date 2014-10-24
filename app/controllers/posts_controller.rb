@@ -12,6 +12,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def new_index
+    @page_title = "Links"
+    if params[:tag]
+      @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page])
+    else
+      @posts = Post.all.order("created_at desc").paginate(:page => params[:page])
+    end
+  end
+
   def by_year_and_month
     @posts = Post.where("EXTRACT(YEAR FROM created_at)= ? AND EXTRACT(MONTH from created_at) = ? ", params[:year], params[:month]).order("created_at DESC").paginate(:page => params[:page])
     render :index

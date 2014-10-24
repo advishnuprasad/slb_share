@@ -1,17 +1,27 @@
 class Post < ActiveRecord::Base
+  serialize :images 
+
   self.per_page = 10
+  
   acts_as_taggable
-  acts_as_votable
   markable_as :favorite
 
   belongs_to :user
 
-  validates_presence_of :title, :user
+  validates_presence_of :user
   validates :links, :presence => true, :url => true
 
-  AvailableTags = %w(Rails Ruby RoR Js Jquery Gems)
-
   after_create :send_mail
+  before_save :get_site_info
+
+  def get_site_info
+    data = Grabbit.url(links)
+    if data
+      self.title = data.title
+      self.description = data.description
+      self.images = data.images
+    end
+  end
 
   def user_name
     self.user.name
